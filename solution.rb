@@ -1,21 +1,39 @@
 require 'sinatra'
 
 
+class Cache
 
-get '/' do
-	puts @@count
-	unless @@count
-		@@count = 0
-		
-	else
-		@@count = @@count+1
-	end
-	erb :page
+	@@count = 0
+
+  def self.init()
+    @@count = 0
+  end
+
+  def self.increment()
+    @@count = @@count + 1
+  end
+
+  def self.count()
+    return @@count
+  end
+
 end
-
 
 configure do
-  @@count = 0
+  Cache::init()
 end
+
+get '/' do
+	if Cache::count() == 0
+	    Cache::increment()
+  	else
+	    Cache::increment()
+  	end
+
+  	erb :page
+end
+
+
+
 
 

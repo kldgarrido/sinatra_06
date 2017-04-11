@@ -24,8 +24,13 @@ configure do
 end
 
 get '/' do
-	Cache::increment()
-  	erb :page
+	#Cache::increment()
+  erb :page
+end
+
+post '/' do
+  Cache::increment()
+  erb :page
 end
 
 

@@ -3,7 +3,7 @@ require 'sinatra'
 
 class Cache
 
-	@@count = 0
+	@@count = -1
 
   def self.init()
     @@count = -1
